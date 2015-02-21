@@ -1,0 +1,52 @@
+<section layout="row">
+
+    <div flex="80">
+        <ui-gmap-google-map center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='map.control'>
+
+
+            <!--  <ui-gmap-markers
+                 models='{expression}'
+                 idKey='{expression}'
+                 doRebuildAll="{string or object}"
+                 doCluster="{string or object}"
+                 clusterOptions='{expression}'
+                 fit="{string or object}"
+                 labelContent='{expression}'
+                 coords="'{string}'"
+                 icon="'{string}'"
+                 options="'{string}'"
+                 labelContent="'{string}'"
+                 labelAnchor="'{string}'"
+                 labelClass="'{string}'"
+                 click="'{string or expression to a function}'"
+                 events="{expression}"
+                 control='{expression}'
+                >
+            </ui-gmap-markers>-->
+            <ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'">
+
+        </ui-gmap-google-map>
+    </div>
+
+
+        <md-content class="full-height" style="width:100%">
+            <md-list>
+                <md-item ng-repeat="studio in studios">
+                    <md-item-content>
+                       <!-- <div class="md-tile-left">
+                            <img ng-src="{{item.face}}" class="face" alt="{{item.who}}">
+                        </div>-->
+                        <div class="md-tile-content studioNav" ng-click="panToStudio(studio.name)">
+                            <h3>{{studio.name}}</h3>
+
+                        </div>
+                    </md-item-content>
+                </md-item>
+            </md-list>
+        </md-content>
+
+</section>
+
+
+
+sdsd
