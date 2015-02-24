@@ -6,7 +6,7 @@ angular.module('placemapApp')
         $stateProvider
             .state('Place', {
                 url: '/place/:placeId',
-                templateUrl: 'app/map/map.html',
+                templateUrl: 'map/map.html',
                 controller: 'MapCtrl'
             });
            /* .state('About', {
