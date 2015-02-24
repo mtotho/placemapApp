@@ -4,7 +4,9 @@ angular.module('placemapApp', [
     'ngMaterial',
     'ui.router',
     'uiGmapgoogle-maps',
-    'tothcommon.security'
+    'tothcommon',
+    'tothcommon.diagnostics',
+    'tothcommon.oauth'
     ])
 
     .config(function ($mdThemingProvider, uiGmapGoogleMapApiProvider) {

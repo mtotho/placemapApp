@@ -28,8 +28,11 @@
         </ui-gmap-google-map>
     </div>
 
+    <p>{{ badbind }}</p>
+    <p>{{ goodbind }}</p>
 
         <md-content class="full-height" style="width:100%">
+            <md-button ng-click="signInWithGoogle()">Google</md-button>
             <md-list>
                 <md-item ng-repeat="studio in studios">
                     <md-item-content>
@@ -44,6 +47,8 @@
                 </md-item>
             </md-list>
         </md-content>
+
+
 
 </section>
 
