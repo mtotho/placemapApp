@@ -8,12 +8,14 @@ var cors = require('cors');
 //var errorHandler = require('./routes/utils/errorHandler')();
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var proxy = require('express-http-proxy');
 
-var port = process.env.PORT || 2200;
+var port = process.env.PORT || 8080;
 var routes;
 
 var environment = process.env.NODE_ENV;
 
+var apiserver = "localhost:2201";
 
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({
@@ -25,13 +27,13 @@ app.use(logger('dev'));
 app.use(cors());
 //app.use(errorHandler.init);
 
-//routes = require('./routes/index')(app);
+//rasoutes = require('./routes/index')(app);
 
 console.log('About to crank up node');
 console.log('PORT=' + port);
 console.log('NODE_ENV=' + environment);
-
-
+//sss
+//asdasdss
 switch (environment) {
     case 'build':
         console.log('** BUILD **');
@@ -51,3 +53,9 @@ app.listen(port, function() {
     console.log('\n__dirname = ' + __dirname +
     '\nprocess.cwd = ' + process.cwd());
 });
+app.use('/api', proxy(apiserver, {
+    forwardPath: function(req, res) {
+
+        return require('url').parse(req.url).path;
+    }
+}));

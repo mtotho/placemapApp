@@ -4,6 +4,7 @@ angular.module('placemapApp', [
     'ngMaterial',
     'ui.router',
     'uiGmapgoogle-maps',
+    'satellizer',
     'tothcommon',
     'tothcommon.diagnostics',
     'tothcommon.oauth'
@@ -24,6 +25,8 @@ angular.module('placemapApp', [
             v: '3.17',
             libraries: 'weather,geometry,visualization,places'
         });
+
+
 });
 
 

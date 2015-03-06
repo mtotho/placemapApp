@@ -1,6 +1,8 @@
 module.exports = function(){
-    var client = './src/client/';
-    var server = './src/server/';
+    var source = './src/';
+    var client = source + 'client/';
+    var server = './';
+
 
     var config = {
         appjs:[
@@ -15,9 +17,12 @@ module.exports = function(){
             directory: './bower_components',
             ignorePath:'../..'
         },
-        defaultPort: 2200,
+        html:client+ '**/*.html',
+        defaultPort: 8080,
+        browserSyncPort:2201,
         server: server,
-        nodeServer: './src/server/app.js'
+        source:source,
+        nodeServer: './placemap.js'
     };
 
     config.getWiredepDefaultOptions = function(){

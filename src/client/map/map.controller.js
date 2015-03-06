@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('placemapApp')
-    .controller('MapCtrl', function ($scope,CurrentUser,loginRedirect,GAPI, uiGmapGoogleMapApi) {
+    .controller('MapCtrl', function ($scope,CurrentUser,loginRedirect,GAPI, $auth, uiGmapGoogleMapApi) {
         //var vm=this;
 
 
         //throw new Error("Something has gone wrong");
         $scope.badbind="der[";
-        //Define the map object
+        //Define the map objects
         $scope.map = {
             center:
             {
@@ -19,6 +19,7 @@ angular.module('placemapApp')
             markersControl:{}
 
         };
+        console.log("derp");
         var additionalParams = {
             'callback': function(authResult){
                 CurrentUser.setProfile("Google User", authResult.access_token);
@@ -28,12 +29,13 @@ angular.module('placemapApp')
             //TODO: get username from given api endpoint
                 //set current user
 
-                //CurrentUser.setProfile()
+                //CurrentUser.setProfilsse()sasdssass
             }
         };
 
         $scope.signInWithGoogle =function(){
-            gapi.auth.signIn(additionalParams);
+            $auth.authenticate('google');
+            //gapi.auth.signIn(additionalParams);
         };
 
 
@@ -51,7 +53,7 @@ angular.module('placemapApp')
 
 
 
-        //Size map height after it loads
+        //Size map height after it loadss
         $scope.$on('$viewContentLoaded', function () {
           map_resize();
         });
