@@ -1,12 +1,9 @@
 'use strict';
 
 angular.module('placemapApp')
-    .controller('MapCtrl', function ($scope,CurrentUser,loginRedirect,GAPI, $auth, uiGmapGoogleMapApi) {
+    .controller('MapCtrl', function ($scope, uiGmapGoogleMapApi) {
         //var vm=this;
 
-
-        //throw new Error("Something has gone wrong");
-        $scope.badbind="der[";
         //Define the map objects
         $scope.map = {
             center:
@@ -18,24 +15,6 @@ angular.module('placemapApp')
             control:{},
             markersControl:{}
 
-        };
-        console.log("derp");
-        var additionalParams = {
-            'callback': function(authResult){
-                CurrentUser.setProfile("Google User", authResult.access_token);
-                console.log(authResult);
-                loginRedirect.redirectPostLogin();
-
-            //TODO: get username from given api endpoint
-                //set current user
-
-                //CurrentUser.setProfilsse()sasdssass
-            }
-        };
-
-        $scope.signInWithGoogle =function(){
-            $auth.authenticate('google');
-            //gapi.auth.signIn(additionalParams);
         };
 
 

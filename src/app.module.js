@@ -3,11 +3,7 @@
 angular.module('placemapApp', [
     'ngMaterial',
     'ui.router',
-    'uiGmapgoogle-maps',
-    'satellizer',
-    'tothcommon',
-    'tothcommon.diagnostics',
-    'tothcommon.oauth'
+    'uiGmapgoogle-maps'
     ])
 
     .config(function ($mdThemingProvider, uiGmapGoogleMapApiProvider) {
