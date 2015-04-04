@@ -1,0 +1,62 @@
+<div  id="login" layout="column" layout-align="center center" style="padding: 50px 0 320px">
+
+
+    <div style="padding-top:50px;"  layout="column" layout-fill  layout-align="center center">
+        <div style="font-size:3em"><span class="accent-hue-3">LOGIN</span></div>
+
+
+
+    </div>
+
+    <div >
+        <form flex-gt-lg="40" flex-lg="50" layout="column" layout-fill  layout-align="center center" role="form" name="loginForm" ng-submit="submitLogin(loginForm)">
+
+            <div layout="column" layout-padding>
+
+                <div  class="md-padding" layout="row" layout-sm="column" >
+
+                    <md-input-container>
+                        <label>Username</label>
+                        <input ng-model="user.username" type="text" required >
+                    </md-input-container>
+
+
+                    <div ng-messages="userForm.account.$error" ng-show="contactForm.account.$dirty">
+                        <div ng-message="required">This is required!</div>
+                        <div ng-message="md-maxlength">That's too long!</div>
+                        <div ng-message="minlength">That's too short!</div>
+                    </div>
+                </div>
+
+                <div class="md-padding" layout="row" layout-sm="column" >
+
+                    <md-input-container>
+                        <label>Password</label>
+                        <input ng-model="user.password" type="password" required >
+                    </md-input-container>
+
+
+
+
+                    <div ng-messages="userForm.password1.$error" ng-show="contactForm.password1.$dirty">
+                        <div ng-message="required">This is required!</div>
+                        <div ng-message="md-maxlength">That's too long!</div>
+                        <div ng-message="minlength">That's too short!</div>
+                    </div>
+
+                </div>
+
+
+                <md-button aria-label="contactSubmit" type="submit">
+
+                    Login
+                </md-button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+</div>
+

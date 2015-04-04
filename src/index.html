@@ -20,11 +20,18 @@
 
 </head>
 
-<body ng-cloak ng-app="placemapApp">
+<body ng-cloak ng-app="placemapApp" ng-controller="AppCtrl as AppVm">
 <header>
     <md-toolbar id="header">
-        <div class="md-toolbar-tools">
-            <span class="md-flex">Placemap</span>
+        <div class="md-toolbar-tools" layout="row" layout-align="center center">
+
+            <span flex class="md-flex">Placemap</span>
+
+            <div flex="80" layout="row" layout-align="end center">
+                <md-button ng-show="AppVm.isLoggedIn"
+                  class="navbutton" ng-click="AppVm.logout()">Logout</md-button>
+
+            </div>
         </div>
     </md-toolbar>
 
@@ -58,9 +65,13 @@
 
 <!--inject:js-->
 <script src="/src/app.module.js"></script>
+<script src="/src/app.controller.js"></script>
 <script src="/src/routes.js"></script>
-<script src="/src/login/login.controller.js"></script>
-<script src="/src/map/map.controller.js"></script>
+<script src="/src/auth/auth.factory.js"></script>
+<script src="/src/auth/user.factory.js"></script>
+<script src="/src/controllers/login/login.controller.js"></script>
+<script src="/src/controllers/map/map.controller.js"></script>
+<script src="/src/controllers/admin/admin.controller.js"></script>
 <!--endinject-->
 
 

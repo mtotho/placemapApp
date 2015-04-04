@@ -6,8 +6,16 @@
             $stateProvider
                 .state('Place', {
                     url: '/place/:placeId',
-                    templateUrl: 'map/map.html',
+                    templateUrl: 'src/controllers/map/map.html',
                     controller: 'MapCtrl'
+                }).state('Login',{
+                    url:'/login',
+                    templateUrl: 'src/controllers/login/login.html',
+                    controller:'LoginCtrl as vm'
+                }).state('Admin',{
+                    url:'/admin',
+                    templateUrl: 'src/controllers/admin/admin.html',
+                    controller:'AdminCtrl as vm'
                 });
             /* .state('About', {
              url: '/about',

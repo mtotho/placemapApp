@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var webserver = require('gulp-webserver');
 var config = require('./gulp.config')();
 
 var $ = require('gulp-load-plugins')({lazy:true});
