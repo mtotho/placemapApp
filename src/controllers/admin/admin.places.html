@@ -1,0 +1,12 @@
+<md-list>
+    <md-item ng-repeat="place in vm.places">
+        <md-item-content>
+            <div class="md-tile-content">
+                {{ place.name }}
+            </div>
+        </md-item-content>
+    </md-item>
+
+</md-list>
+
+<md-button ui-sref="Admin.newplace">New Place</md-button>

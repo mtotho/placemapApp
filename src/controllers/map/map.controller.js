@@ -1,8 +1,21 @@
 'use strict';
 
 angular.module('placemapApp')
-    .controller('MapCtrl', function ($scope, uiGmapGoogleMapApi) {
-        //var vm=this;
+    .controller('MapCtrl', function ($scope,$stateParams,$resource,Resources, uiGmapGoogleMapApi) {
+        var vm=this;
+
+        var Place = $resource('/api/places');
+        vm.placeName = $stateParams.name;
+        vm.placeId = $stateParams.placeId;
+
+        Resources.places.get({id:vm.placeId},function(place){
+           console.log(place);
+
+            $scope.map.center = place.center;
+            $scope.map.zoom = place.zoom;
+        });
+
+
 
         //Define the map objects
         $scope.map = {
@@ -53,17 +66,20 @@ angular.module('placemapApp')
 
     });
 
-function map_resize(){
+function map_resize(offset){
     var headerheight=$("#header").outerHeight();
     var windowheight=$(window).outerHeight();
 
     var targetheight = windowheight - (headerheight);
 
+    if(offset){
+       targetheight = targetheight-offset;
+    }
     $("#map_canvas .angular-google-map-container").css('height',targetheight+'px');
     $(".full-height").css('height',targetheight+'px');
     console.log(targetheight);
 }
 
 $(window).resize(function(){
-    map_resize();
+    ///map_resize();
 });

@@ -28,6 +28,13 @@
             <span flex class="md-flex">Placemap</span>
 
             <div flex="80" layout="row" layout-align="end center">
+                <md-button ui-sref="Placeselect"
+                           class="navbutton" >Places</md-button>
+
+
+                <md-button ng-show="AppVm.isLoggedIn"
+                           class="navbutton" ui-sref="Admin">Admin</md-button>
+
                 <md-button ng-show="AppVm.isLoggedIn"
                   class="navbutton" ng-click="AppVm.logout()">Logout</md-button>
 
@@ -69,9 +76,13 @@
 <script src="/src/routes.js"></script>
 <script src="/src/auth/auth.factory.js"></script>
 <script src="/src/auth/user.factory.js"></script>
+<script src="/src/factories/resources.js"></script>
+<script src="/src/controllers/admin/admin.controller.js"></script>
+<script src="/src/controllers/admin/admin.places.controller.js"></script>
+<script src="/src/controllers/admin/admin.places.create.controller.js"></script>
 <script src="/src/controllers/login/login.controller.js"></script>
 <script src="/src/controllers/map/map.controller.js"></script>
-<script src="/src/controllers/admin/admin.controller.js"></script>
+<script src="/src/controllers/places/places.controller.js"></script>
 <!--endinject-->
 
 

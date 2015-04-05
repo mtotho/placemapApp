@@ -58,6 +58,7 @@ angular.module('placemapApp').factory('TokenInterceptor', function($q, $window) 
                 config.headers['Content-Type'] = "application/json";
             }
 
+            console.log(config);
             return config || $q.when(config);
         },
 

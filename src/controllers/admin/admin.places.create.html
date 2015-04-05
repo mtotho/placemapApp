@@ -1,0 +1,85 @@
+<section layout="row">
+    <md-content class="full-height" style="width:100%">
+
+        <form role="form" name="placeCreateForm" ng-submit="createPlace(placeCreateForm)">
+            <md-list>
+                <md-item >
+                    <md-item-content>
+                        <div class="md-tile-content">
+                            <md-input-container>
+                                <label>Place Name</label>
+                                <input ng-model="place.name" type="text" name="name" required >
+                            </md-input-container>
+                        </div>
+                    </md-item-content>
+                </md-item>
+                <md-item >
+                    <md-item-content>
+
+                        <div class="md-tile-content">
+                            <md-input-container>
+                                <label>Zoom</label>
+                                <input ng-model="map.zoom" type="text" disabled >
+                            </md-input-container>
+
+                        </div>
+                    </md-item-content>
+                </md-item>
+
+                <md-item >
+                    <md-item-content>
+
+                        <div class="md-tile-content">
+                            <md-switch ng-model="place.isPublic" aria-label="Switch 1">
+                                Public: {{ place.isPublic}}
+                            </md-switch>
+                        </div>
+                    </md-item-content>
+                </md-item>
+
+                <md-item >
+                    <md-item-content>
+
+                        <div class="md-tile-content">
+                            <md-button class="md-raised md-primary" aria-label="placeCreateForm" type="submit">Create Place</md-button>
+                        </div>
+                    </md-item-content>
+                </md-item>
+            </md-list>
+
+
+        </form>
+    </md-content>
+
+    <div flex="80" style="padding:0 0px 30px 0;">
+        <md-card><ui-gmap-google-map center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='map.control'>
+
+
+            <!--  <ui-gmap-markers
+                 models='{expression}'
+                 idKey='{expression}'
+                 doRebuildAll="{string or object}"
+                 doCluster="{string or object}"
+                 clusterOptions='{expression}'
+                 fit="{string or object}"
+                 labelContent='{expression}'
+                 coords="'{string}'"
+                 icon="'{string}'"
+                 options="'{string}'"
+                 labelContent="'{string}'"
+                 labelAnchor="'{string}'"
+                 labelClass="'{string}'"
+                 click="'{string or expression to a function}'"
+                 events="{expression}"
+                 control='{expression}'
+                >
+            </ui-gmap-markers>-->
+            <ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'">
+
+        </ui-gmap-google-map></md-card>
+    </div>
+
+
+
+
+</section>

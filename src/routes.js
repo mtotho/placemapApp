@@ -4,8 +4,12 @@
         .config(function ($stateProvider,$locationProvider, $urlRouterProvider) {
 
             $stateProvider
-                .state('Place', {
-                    url: '/place/:placeId',
+                .state('Placeselect', {
+                    url: '/places',
+                    templateUrl: 'src/controllers/places/places.html',
+                    controller: 'PlaceselectCtrl as vm'
+                }).state('Place', {
+                    url: '/places/:placeId/:name',
                     templateUrl: 'src/controllers/map/map.html',
                     controller: 'MapCtrl'
                 }).state('Login',{
@@ -16,6 +20,14 @@
                     url:'/admin',
                     templateUrl: 'src/controllers/admin/admin.html',
                     controller:'AdminCtrl as vm'
+                }).state('Admin.places',{
+                    url:'/places',
+                    templateUrl: 'src/controllers/admin/admin.places.html',
+                    controller:'AdminPlacesCtrl as vm'
+                }).state('Admin.newplace',{
+                    url:'/places/create',
+                    templateUrl: 'src/controllers/admin/admin.places.create.html',
+                    controller:'AdminPlacesCreateCtrl as vm'
                 });
             /* .state('About', {
              url: '/about',
