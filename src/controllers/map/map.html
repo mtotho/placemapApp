@@ -23,7 +23,16 @@
                  control='{expression}'
                 >
             </ui-gmap-markers>-->
-            <ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'">
+            <ui-gmap-marker
+                    idKey="pointer.id"
+                    coords="pointer.coords"
+
+                    options="pointer.options"
+                    events="pointer.events"
+
+                    ></ui-gmap-marker>
+
+            <!--<ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'"></ui-gmap-markers>-->
 
         </ui-gmap-google-map>
     </div>

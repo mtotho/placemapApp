@@ -11,8 +11,15 @@ angular.module('placemapApp')
         Resources.places.get({id:vm.placeId},function(place){
            console.log(place);
 
+
             $scope.map.center = place.center;
             $scope.map.zoom = place.zoom;
+
+            $scope.pointer.coords = {
+                latitude:place.center.latitude,
+                longitude:place.center.longitude
+            };
+
         });
 
 
@@ -30,16 +37,21 @@ angular.module('placemapApp')
 
         };
 
+        $scope.pointer = {
+            id:"pointer",
+            coords:{
+                latitude:40.733973,
+                longitude:-73.986695
+            },
+            options:{
+                draggable:true
+            },
+            events:{},
+            control:{}
+        }
 
         $scope.responseMarkers=[
-            {
-                id:1,
-                coords:{
-                    latitude:40.733973,
-                    longitude:-73.986695
-                },
-                name:"Kathleen Toth"
-            }
+
         ]
 
 

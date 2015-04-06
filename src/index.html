@@ -13,6 +13,7 @@
     <!--endbower-->
 
     <link rel="stylesheet" href="../style.css"/>
+    <link rel="stylesheet" href="/src/controllers/places/places.css"/>
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic"/>
 
@@ -27,7 +28,7 @@
 
             <span flex class="md-flex">Placemap</span>
 
-            <div flex="80" layout="row" layout-align="end center">
+            <nav flex="80" layout="row" layout-align="end center">
                 <md-button ui-sref="Placeselect"
                            class="navbutton" >Places</md-button>
 
@@ -38,7 +39,7 @@
                 <md-button ng-show="AppVm.isLoggedIn"
                   class="navbutton" ng-click="AppVm.logout()">Logout</md-button>
 
-            </div>
+            </nav>
         </div>
     </md-toolbar>
 
@@ -73,6 +74,7 @@
 <!--inject:js-->
 <script src="/src/app.module.js"></script>
 <script src="/src/app.controller.js"></script>
+<script src="/src/placemap.theme.js"></script>
 <script src="/src/routes.js"></script>
 <script src="/src/auth/auth.factory.js"></script>
 <script src="/src/auth/user.factory.js"></script>
@@ -80,8 +82,10 @@
 <script src="/src/controllers/admin/admin.controller.js"></script>
 <script src="/src/controllers/admin/admin.places.controller.js"></script>
 <script src="/src/controllers/admin/admin.places.create.controller.js"></script>
-<script src="/src/controllers/login/login.controller.js"></script>
+<script src="/src/controllers/admin/admin.questions.controller.js"></script>
 <script src="/src/controllers/map/map.controller.js"></script>
+<script src="/src/controllers/login/login.controller.js"></script>
+<script src="/src/controllers/places/placeTile.js"></script>
 <script src="/src/controllers/places/places.controller.js"></script>
 <!--endinject-->
 

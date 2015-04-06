@@ -28,6 +28,10 @@
                     url:'/places/create',
                     templateUrl: 'src/controllers/admin/admin.places.create.html',
                     controller:'AdminPlacesCreateCtrl as vm'
+                }).state('Admin.questions',{
+                    url:'/questions',
+                    templateUrl: 'src/controllers/admin/admin.questions.html',
+                    controller:'AdminQuestionsCtrl as vm'
                 });
             /* .state('About', {
              url: '/about',

@@ -3,12 +3,11 @@
     height:100%;
 }
 
-.studioNav{
-    cursor:pointer;
-}
-.studioNav:hover{
-    background-color:#e8e8e8
-}
+
 body{
     overflow: hidden;
+}
+
+.navbutton{
+    margin-right:40px;
 }

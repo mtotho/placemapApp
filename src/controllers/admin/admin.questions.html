@@ -1,0 +1,26 @@
+<div layout="row">
+    <div flex-gt-md="30" flex layout="column" layout-padding>
+
+        <div layout="row">
+            <md-select style="width:100px" placeholder="Pick" ng-model="vm.selectedQS">
+                <md-option ng-repeat="qs in vm.questionsets" value="{{qs.name}}">{{qs.name}}</md-option>
+
+            </md-select>
+
+            <form layout="row" role="form" name="qsCreateForm" ng-submit="createSet(qsCreateForm)">
+                <md-input-container>
+                    <label>New Question Set</label>
+                    <input ng-model="vm.newQS.name" required>
+                </md-input-container>
+
+                <md-button class="md-raised md-primary" aria-label="qsCreateForm" type="submit">Create Set</md-button>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+    <div flex>right</div>
+</div>

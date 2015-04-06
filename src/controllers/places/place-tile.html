@@ -1,0 +1,13 @@
+<md-card ui-sref="Place({placeId:place._id,name:place.name})">
+    <md-toolbar class="md-accent md-hue-1">
+        <div class="md-toolbar-tools" layout="row" layout-align="start center">
+            {{ place.name }}
+        </div>
+    </md-toolbar>
+
+    <div layout="column">
+        <div>{{place.center.latitude}}</div>
+
+        <div>{{place.center.longitude}}</div>
+    </div>
+</md-card>

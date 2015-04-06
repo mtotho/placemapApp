@@ -1,0 +1,17 @@
+place-tile md-card{
+    height:120px;
+    cursor:pointer;
+}
+
+place-tile md-card:hover > md-toolbar{
+    background-color:#F1F8E9 !important;
+
+}
+
+place-tile md-toolbar{
+    min-height:48px !important;
+    height:48px !important;
+}
+place-tile .md-toolbar-tools{
+    height:48px;
+}
