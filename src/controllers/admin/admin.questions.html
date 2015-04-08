@@ -1,19 +1,21 @@
-<div layout="row">
-    <div flex-gt-md="30" flex layout="column" layout-padding>
+<div layout="row" layout-padding>
+    <div flex-gt-md="40" flex layout="column" layout-padding>
 
-        <div layout="row">
-            <md-select style="width:100px" placeholder="Pick" ng-model="vm.selectedQS">
-                <md-option ng-repeat="qs in vm.questionsets" value="{{qs.name}}">{{qs.name}}</md-option>
+        <div  layout-fill layout="row" md-padding layout-align="space-around start">
 
-            </md-select>
+                <md-select flex placeholder="Select a question set" ng-model="vm.selectedQS">
+                    <md-option ng-repeat="qs in vm.questionsets" value="{{ qs.name }}">{{qs.name}}</md-option>
 
-            <form layout="row" role="form" name="qsCreateForm" ng-submit="createSet(qsCreateForm)">
-                <md-input-container>
+                </md-select>
+
+            <p>Or</p>
+            <form flex layout="row" layout-align="space-around center" role="form" name="qsCreateForm" ng-submit="createSet(qsCreateForm)">
+                <md-input-container flex style="padding-bottom:0px">
                     <label>New Question Set</label>
                     <input ng-model="vm.newQS.name" required>
                 </md-input-container>
 
-                <md-button class="md-raised md-primary" aria-label="qsCreateForm" type="submit">Create Set</md-button>
+                <md-button flex class="md-raised md-primary" aria-label="qsCreateForm" type="submit">Create Set</md-button>
 
             </form>
 
@@ -22,5 +24,26 @@
 
 
     </div>
-    <div flex>right</div>
+    <div flex layout="column">
+        <div  layout-fill layout="row" md-padding layout-align="space-around start">
+        <p>All Questions</p>
+
+            <form flex layout="row" layout-align="space-around center" role="form" name="qCreateForm" ng-submit="createQuestion(qCreateForm)">
+                <md-input-container flex style="padding-bottom:0px">
+                    <label>New Question </label>
+                    <input ng-model="vm.newQuestion.name" required>
+                </md-input-container>
+
+                <md-button flex class="md-raised md-primary" aria-label="qCreateForm" type="submit">Create Question</md-button>
+
+            </form>
+
+            </div>
+        <div ng-repeat="question in vm.questions">
+            {{question.name}}
+        </div>
+
+
+
+    </div>
 </div>
