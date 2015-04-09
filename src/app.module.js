@@ -3,6 +3,7 @@
 angular.module('placemapApp', [
     'ngMaterial',
     'ngAnimate',
+    'ngDragDrop',
     'ngResource',
     'ui.router',
     'uiGmapgoogle-maps'
