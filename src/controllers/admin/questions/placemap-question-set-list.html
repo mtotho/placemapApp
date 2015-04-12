@@ -44,8 +44,16 @@
             <div>Viewing <strong>{{selectedSet.name}}</strong> questions</div>
         </div>
 
-        <md-card  ng-repeat="q in selectedSet.questions">
-            {{q.name}}
+        <md-card style="padding:5px 10px 5px 10px" layout="row" layout-align="space-between center" ng-repeat="q in selectedSet.questions">
+            <div>
+                {{q.name}}
+            </div>
+
+            <div>
+                <a style="cursor:pointer; color:red" ng-click="removeQuestion($index)">remove</a>
+            </div>
+
+
         </md-card>
     </div>
 </div>

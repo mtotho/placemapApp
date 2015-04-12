@@ -20,10 +20,11 @@ angular.module('placemapApp')
                 $scope.inSet = false;
 
 
-                $scope.$on('setSelected',function(event,set){
+                $scope.$on('qsUpdated',function(event,set){
                     $scope.inSet = false;
                     $scope.selectedSet = set;
 
+                    console.log(set);
                     if(set!==null){
                         var inSet = $filter('getByProp')(set.questions, 'name', $scope.question.name);
                         if(inSet !== null){

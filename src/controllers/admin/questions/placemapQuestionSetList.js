@@ -52,6 +52,12 @@ angular.module('placemapApp')
                     }
                 }
 
+                $scope.removeQuestion = function(index){
+                    if($scope.selectedSet!== null){
+                        $scope.selectedSet.questions.splice(index,1);
+                        QuestionSetService.commit($scope.selectedSet);
+                    }
+                }
 
                 $scope.saveQS = function(){
                     if(vm.selectedQS !== null){

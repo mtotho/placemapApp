@@ -10,20 +10,16 @@ angular.module('placemapApp').factory('QuestionSetService', function($rootScope,
 
     var setSelected = function(qs){
         this.questionset = qs;
-        $rootScope.$broadcast('setSelected', qs);
+        $rootScope.$broadcast('qsUpdated', qs);
     }
 
     var addQuestion = function(question){
         if(this.questionset){
             this.questionset.questions.push(question);
+            commit(this.questionset);
         }
 
-        if(this.questionset !== null){
 
-            QuestionSet.update({id:this.questionset._id}, this.questionset, function(result){
-                console.log(result);
-            });
-        }
     }
     var getQuestions = function(){
         if(this.questionset){
@@ -33,10 +29,25 @@ angular.module('placemapApp').factory('QuestionSetService', function($rootScope,
         }
     }
 
+    var commit = function(qs){
+        if(qs){
+            console.log(qs);
+            //var id = this.question_set._id;
+            QuestionSet.update({id:qs._id}, qs, function(result){
+                console.log(result);
+
+                $rootScope.$broadcast('qsUpdated', qs);
+            });
+
+        }
+
+    }
+
     return {
         addQuestion:addQuestion,
         getQuestions:getQuestions,
-        setSelected:setSelected
+        setSelected:setSelected,
+        commit:commit
 
     };
 });
