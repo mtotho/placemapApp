@@ -1,0 +1,16 @@
+<div layout="column" >
+
+
+    <md-button ng-show="!showQuestionCreateCard" flex class="md-raised md-primary" ng-click="toggleCreateQuestionCard()">Create Question</md-button>
+    <md-button ng-show="showQuestionCreateCard" flex class="md-raised md-warn" ng-click="toggleCreateQuestionCard()">Cancel Create Question</md-button>
+
+
+    <placemap-question-edit layout-fill flex ng-show="showQuestionCreateCard" question="newQuestion"></placemap-question-edit>
+
+    <div   layout-fill layout="row" layout-wrap>
+
+        <!--<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
+        <placemap-question  flex="50"  ng-repeat="question in questions" question="question"></placemap-question>
+
+    </div>
+</div>

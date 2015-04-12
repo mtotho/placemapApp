@@ -1,0 +1,46 @@
+<md-card layout="row" style="padding:40px 0 40px 0">
+
+
+    <form layout="row" layout-fill layout-align="space-around center" role="form" name="questionEditForm" ng-submit="saveQuestion(questionEditForm)">
+
+        <div layout="column">
+
+            <md-input-container flex style="padding-bottom:0px">
+                <label>Question Label (Your identifier)</label>
+                <input ng-model="question.name" required>
+            </md-input-container>
+
+            <md-input-container flex style="padding-bottom:0px">
+                <label>Question Text</label>
+                <input ng-model="question.text" required>
+            </md-input-container>
+        </div>
+
+        <div layout="column">
+            <md-select placeholder="Question Type" ng-model="question.type">
+                <md-option value="shortanswer">Short Answer</md-option>
+                <md-option value="checkbox">Check Box</md-option>
+                <md-option value="radio">Radio</md-option>
+            </md-select>
+
+
+            <div style="padding-top:20px" ng-show="question.type==='radio' || question.type==='checkbox'" layout="column" >
+
+              <span style="font-style:italic;">Options</span>
+                <div ng-repeat="opt in question.opts">
+                    <span style="font-weight:bold;">{{ opt.text }}</span>
+                </div>
+
+                <md-input-container flex style="margin-top:30px">
+                    <label>New Option</label>
+                    <input ng-model="newOption" >
+                </md-input-container>
+                <a  style="cursor:pointer; color:blue" ng-click="addOption()" >Add Option</a>
+            </div>
+
+
+        </div>
+        <md-button  class="md-raised md-primary" aria-label="questionEditForm" type="submit">Create Question</md-button>
+
+    </form>
+</md-card>

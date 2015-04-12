@@ -55,35 +55,7 @@
     <div flex layout="column" layout-align="start start">
         <!--<div  layout-fill layout="row" md-padding layout-align="space-around start">-->
 
-        <form  layout="row" layout-align="space-around start" role="form" name="qCreateForm" ng-submit="createQuestion(qCreateForm)">
-            <md-input-container flex style="padding-bottom:0px">
-                <label>New Question </label>
-                <input ng-model="vm.newQuestion.name" required>
-            </md-input-container>
-
-            <md-button flex class="md-raised md-primary" aria-label="qCreateForm" type="submit">Create Question</md-button>
-
-        </form>
-
-
-        <!--<div>-->
-
-        <!--</div>-->
-
-        <div layout-fill>
-            <!--<md-subheader class="md-no-sticky">Questions</md-subheader>-->
-            <div layout="row" layout-align="start center" ng-repeat="question in vm.questions" >
-                <!--<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
-                <div style="width:30px; cursor:pointer;">
-                    <md-icon ng-show="vm.selectedQS !== null" ng-click="vm.addQuestionToSet(question)" style="color:green" md-svg-src="/src/assets/icons/ic_add_circle_24px.svg"></md-icon>
-                </div>
-                <div flex>
-                    <h3>  {{question.name}}</h3>
-                    <!--<h4>{{ item.what }}</h4>-->
-                    <!--<p>{{ item.notes }}</p>-->
-                </div>
-            </div>
-        </div>
+        <placemap-question-list layout-fill></placemap-question-list>
 
         <!-- -->
         <!--<md-list>-->

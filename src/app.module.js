@@ -50,7 +50,9 @@ angular.module('placemapApp', [
         //});
     });
 
-
+angular.isUndefinedOrNull = function(val) {
+    return angular.isUndefined(val) || val === null
+}
 $(document).ready(function(){
   /*  var headerheight=$("header").outerHeight();
 
