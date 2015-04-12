@@ -56,6 +56,13 @@ angular.module('placemapApp')
                     $scope.newQuestion = new QuestionModel();
                 }
 
+                $scope.selectedSet = null;
+
+                $scope.$on('setSelected',function(event,set){
+                    $scope.selectedSet = set;
+
+                });
+
 
 
             }//end controller

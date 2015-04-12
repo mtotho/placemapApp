@@ -5,6 +5,17 @@ angular.module('placemapApp')
         var vm=this;
         var PlaceResource = $resource('/api/v1/places/');
 
+
+        var QuestionSet = $resource('/api/v1/questionsets');
+
+
+        QuestionSet.query(function(data){
+            vm.questionsets = data;
+
+            console.log(data);
+
+        });
+
         var Place = function(){
             this.name = "";
             this.isPublic = false;
@@ -14,6 +25,7 @@ angular.module('placemapApp')
                 longitude:null
             };
             this.zoom = null;
+            this.question_set = null;
         }
 
         $scope.place = new Place();
@@ -52,28 +64,12 @@ angular.module('placemapApp')
                 $scope.place.zoom = $scope.map.zoom;
                 $scope.place.center = $scope.map.center;
 
+                console.log($scope.place);
                 var newplace = new PlaceResource($scope.place);
                 newplace.$save(function(data){
-
+                    console.log(data);
                     $state.go('Admin.places');
                 });
-              //  var date = new Date;
-                //var unixtime=parseInt(date.getTime()/1000);
-                //var unixtime_to_date = new Date(unixtime*1000);
-                //
-                //var sa = new API.Studyarea();
-                //sa.name=$scope.StudyAreaName;
-                //sa.default_zoom=$scope.map.zoom;
-                //sa.lat=""+$scope.map.center.latitude;
-                //sa.lng=""+$scope.map.center.longitude;
-                ////sa.timestamp = unixtime_to_date
-                //sa.is_public = $scope.chkListPublic;
-                //sa.default_audit_type=$scope.selQS._id;
-                //console.log(sa);
-                //sa.$save(function(result){
-                //    storage.in_progress=false;
-                //    $state.transitionTo("admin.studyareas");
-                //});
 
             }
 

@@ -15,6 +15,15 @@
                 </md-item>
                 <md-item >
                     <md-item-content>
+                        <div class="md-tile-content">
+                            <md-select placeholder="Question Set" ng-model="place.question_set">
+                                <md-option ng-repeat="set in vm.questionsets" ng-value="set._id">{{set.name }}</md-option>
+                            </md-select>
+                        </div>
+                    </md-item-content>
+                </md-item>
+                <md-item >
+                    <md-item-content>
 
                         <div class="md-tile-content">
                             <md-input-container>

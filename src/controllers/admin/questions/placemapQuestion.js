@@ -6,7 +6,8 @@ angular.module('placemapApp')
             templateUrl: 'src/controllers/admin/questions/placemap-question.html',
             restrict: 'EA',
             scope:{
-                "question":"="
+                "question":"=",
+                "selectedSet":"="
             },
             require:"^placemapQuestionList",
             link: function (scope, element, attrs, ctrl) {
@@ -15,7 +16,7 @@ angular.module('placemapApp')
                 };
             },
             controller: function($scope,$filter, QuestionSetService){
-                $scope.selectedSet= null;
+                //$scope.selectedSet= null;
                 $scope.inSet = false;
 
 
