@@ -1,10 +1,13 @@
 <md-card  layout="row" layout-align="start center" style="padding-left:10px;">
     <div style="width:30px; cursor:pointer;">
-        <md-icon ng-show="vm.selectedQS !== null" ng-click="vm.addQuestionToSet(question)" style="color:green" md-svg-src="/src/assets/icons/ic_add_circle_24px.svg"></md-icon>
+        <md-icon ng-show="selectedSet !== null && !inSet" ng-click="addQuestionToSet(question)" style="color:green" md-svg-src="/src/assets/icons/ic_add_circle_24px.svg"></md-icon>
     </div>
     <div flex>
-        <h3>  {{question.name}}</h3>
+        <h3 ng-click="setEditQuestion(question)" >{{question.name}}</h3>
         <!--<h4>{{ item.what }}</h4>-->
         <!--<p>{{ item.notes }}</p>-->
     </div>
 </md-card>
+
+<!--<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
+

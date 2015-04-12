@@ -13,17 +13,24 @@ angular.module('placemapApp')
                 scope.pushQuestion = function(question){
                     ctrl.pushQuestion(question);
                 }
+
+                scope.editComplete = function(){
+                    ctrl.editComplete();
+                }
             },
             controller: function($scope, $resource){
                 var Question =  $resource('/api/v1/questions/:id',null,{
                     'update': {method:'PUT'}
                 });
 
-                var isNew = true;
-                if(!angular.isUndefinedOrNull($scope.question._id)){
-                    isNew = false;
-                }
 
+                $scope.isNew = true;
+
+                if(!angular.isUndefinedOrNull($scope.question._id)){
+
+                    $scope.isNew = false;
+                }
+                console.log($scope.question);
                 $scope.newOption = "";
 
                 $scope.addOption = function(){
@@ -35,11 +42,13 @@ angular.module('placemapApp')
 
                 }
 
-
+                $scope.cancelEdit = function(){
+                    $scope.editComplete();
+                }
                 $scope.saveQuestion = function(form){
 
                     if(form.$valid) {
-                        if (isNew) {
+                        if ($scope.isNew) {
 
                             var q = new Question($scope.question);
 
@@ -53,8 +62,9 @@ angular.module('placemapApp')
 
                         } else {
 
-                            Question.update({id: $scope.question._id}, vm.question, function (result) {
+                            Question.update({id: $scope.question._id}, $scope.question, function (result) {
                                 console.log(result);
+                                $scope.editComplete();
                             });
 
                         }

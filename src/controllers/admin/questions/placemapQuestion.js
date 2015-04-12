@@ -8,15 +8,37 @@ angular.module('placemapApp')
             scope:{
                 "question":"="
             },
-            //require:"^legacyToolExplorer",
+            require:"^placemapQuestionList",
             link: function (scope, element, attrs, ctrl) {
-
+                scope.setEditQuestion= function(question){
+                    ctrl.setEditQuestion(question);
+                };
             },
-            controller: function($scope){
+            controller: function($scope,$filter, QuestionSetService){
+                $scope.selectedSet= null;
+                $scope.inSet = false;
 
 
+                $scope.$on('setSelected',function(event,set){
+                    $scope.inSet = false;
+                    $scope.selectedSet = set;
 
+                    if(set!==null){
+                        var inSet = $filter('getByProp')(set.questions, 'name', $scope.question.name);
+                        if(inSet !== null){
+                            $scope.inSet = true;
+                        }
+                    }
+                });
 
+                $scope.setEditQuestion = function(){
+
+                }
+
+                $scope.addQuestionToSet = function(question){
+                    QuestionSetService.addQuestion(question);
+                    $scope.inSet = true;
+                }
 
             }//end controller
         };

@@ -1,3 +1,10 @@
+<style>
+    placemap-question h3:hover{
+        cursor:pointer;
+        text-decoration: underline;
+    }
+</style>
+
 <div layout="column" >
 
 
@@ -5,12 +12,20 @@
     <md-button ng-show="showQuestionCreateCard" flex class="md-raised md-warn" ng-click="toggleCreateQuestionCard()">Cancel Create Question</md-button>
 
 
-    <placemap-question-edit layout-fill flex ng-show="showQuestionCreateCard" question="newQuestion"></placemap-question-edit>
+    <placemap-question-edit layout-fill flex ng-if="showQuestionCreateCard" question="newQuestion"></placemap-question-edit>
+
+
+    <placemap-question-edit layout-fill flex ng-if="editQuestion !== null"  question="editQuestion"></placemap-question-edit>
+
 
     <div   layout-fill layout="row" layout-wrap>
 
         <!--<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
-        <placemap-question  flex="50"  ng-repeat="question in questions" question="question"></placemap-question>
+
+
+
+
+        <placemap-question flex="50"  ng-repeat="question in questions" question="question"></placemap-question>
 
     </div>
 </div>

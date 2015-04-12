@@ -12,7 +12,7 @@ angular.module('placemapApp')
             link: function (scope, element, attrs, ctrl) {
 
             },
-            controller: function($scope, $resource){
+            controller: function($scope, $resource, QuestionSetService){
                 var vm = this;
 
                 function QuestionModel(){
@@ -23,24 +23,40 @@ angular.module('placemapApp')
                     this.opts = [];
 
                 }
+                $scope.editQuestion = null;
 
+                this.setEditQuestion = function(question){
+                    $scope.editQuestion = question;
+                }
+                this.editComplete = function(){
+
+                    $scope.editQuestion = null;
+
+
+                }
                 var Question = $resource('/api/v1/questions');
                 Question.query(function(data){
                     $scope.questions = data;
                 });
 
 
+
                 $scope.showQuestionCreateCard = false;
                 $scope.newQuestion  = new QuestionModel();
+
+
                 $scope.toggleCreateQuestionCard = function(){
                     $scope.showQuestionCreateCard = !$scope.showQuestionCreateCard;
                 }
 
+                console.log($scope.editQuestion);
                 this.pushQuestion = function(question){
                     $scope.questions.push(question);
                     $scope.showQuestionCreateCard = false;
                     $scope.newQuestion = new QuestionModel();
                 }
+
+
 
             }//end controller
         };

@@ -4,44 +4,13 @@ angular.module('placemapApp')
     .controller('AdminQuestionsCtrl', function ($scope, $resource, $mdBottomSheet, $state) {
         var vm=this;
 
-        var QuestionSet = $resource('/api/v1/questionsets/:id',null,{
-            'update': {method:'PUT'}
-
-        });
 
 
-        vm.selectedQS = null;
-        vm.questionsets=[];
-        vm.questions=[];
-        vm.newQS = {
-            name:""
-        };
-
-        QuestionSet.query(function(data){
-            vm.questionsets = data;
-
-            if(vm.questionsets.length>0){
-               // vm.selectedQS =data[0];
-            }
-            console.log(data);
-        });
 
 
-        $scope.$watch('vm.selectedQS',function(data){
-            if(vm.selectedQS !== null){
 
-            }
-        });
-        $scope.createSet = function(form){
 
-            if(form.$valid) {
-                var qs = new QuestionSet(vm.newQS);
 
-                qs.$save(function(data){
-                    console.log(data);
-                });
-            }
-        }
 
 
 
@@ -54,16 +23,6 @@ angular.module('placemapApp')
             }
         }
 
-        vm.saveQS = function(){
-            if(vm.selectedQS !== null){
-                console.log(vm.selectedQS);
-                QuestionSet.update({id:vm.selectedQS._id}, vm.selectedQS, function(result){
-                    console.log(result);
-                });
-
-            }
-
-        }
 
 
         //

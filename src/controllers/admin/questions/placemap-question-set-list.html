@@ -1,0 +1,51 @@
+<!--<md-select flex placeholder="Select a question set" ng-model="vm.selectedQS">-->
+    <!--<md-option ng-repeat="qs in vm.questionsets" ng-value="qs">{{qs.name}}</md-option>-->
+
+<!--</md-select>-->
+<style>
+    .question_set_card:hover >.question_set_name{
+        font-weight:bold;
+    }
+    .icon-back{
+        cursor:pointer;
+    }
+    .icon-back svg, .icon-back{
+        width:48px;
+        height:48px;
+    }
+</style>
+
+<div layout="column" >
+
+    <div ng-show="selectedSet === null">
+
+
+
+        <form flex layout="row" layout-align="space-around center" role="form" name="qsCreateForm" ng-submit="createSet(qsCreateForm)">
+            <md-input-container flex style="padding-bottom:0px">
+                <label>New Question Set</label>
+                <input ng-model="newQS.name" required>
+            </md-input-container>
+
+            <md-button flex class="md-raised md-primary" aria-label="qsCreateForm" type="submit">Create Set</md-button>
+
+        </form>
+
+        <md-card   class="question_set_card" style="padding: 10px 0 10px 10px; cursor:pointer;" ng-click="selectSet(qs)" ng-repeat="qs in questionsets  | orderBy:'name'">
+            <span class="question_set_name">{{qs.name}}</span>
+        </md-card>
+    </div>
+    <div ng-show="selectedSet !== null">
+
+        <div layout="row" layout-align="start center">
+            <div style="margin-right:30px">
+                <md-icon flex="10" class="icon-back" md-svg-src="src/assets/icons/ic_arrow_back_48px.svg"  ng-click="selectSet(null)" style="color: #0f0"></md-icon>
+            </div>
+            <div>Viewing <strong>{{selectedSet.name}}</strong> questions</div>
+        </div>
+
+        <md-card  ng-repeat="q in selectedSet.questions">
+            {{q.name}}
+        </md-card>
+    </div>
+</div>

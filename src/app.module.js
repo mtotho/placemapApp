@@ -48,8 +48,19 @@ angular.module('placemapApp', [
         //        $location.path('/');
         //    }
         //});
-    });
+    }).filter('getByProp', function() {
+    return function(input, prop, val) {
 
+        var i=0, len=input.length;
+        for (i=0; i<len; i++) {
+
+            if (input[i][prop] === val) {
+                return input[i];
+            }
+        }
+        return null;
+    }
+});
 angular.isUndefinedOrNull = function(val) {
     return angular.isUndefined(val) || val === null
 }

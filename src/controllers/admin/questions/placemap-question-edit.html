@@ -40,7 +40,12 @@
 
 
         </div>
-        <md-button  class="md-raised md-primary" aria-label="questionEditForm" type="submit">Create Question</md-button>
+
+        <div layout="column">
+            <md-button ng-show="isNew" class="md-raised md-primary" aria-label="questionEditForm" type="submit">Create Question</md-button>
+            <md-button ng-show="!isNew" class="md-raised md-primary" aria-label="questionEditForm" type="submit">Update Question</md-button>
+            <md-button ng-show="!isNew" class="md-raised md-primary" aria-label="questionEditForm" style="margin-top:20px" ng-click="cancelEdit()">Cancel</md-button>
+        </div>
 
     </form>
 </md-card>
