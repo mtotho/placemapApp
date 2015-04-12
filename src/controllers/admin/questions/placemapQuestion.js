@@ -19,14 +19,14 @@ angular.module('placemapApp')
                 //$scope.selectedSet= null;
                 $scope.inSet = false;
 
-
+                console.log($scope.selectedSet);
                 $scope.$on('qsUpdated',function(event,set){
                     $scope.inSet = false;
                     $scope.selectedSet = set;
 
                     console.log(set);
                     if(set!==null){
-                        var inSet = $filter('getByProp')(set.questions, 'name', $scope.question.name);
+                            var inSet = $filter('getByProp')(set.questions, 'name', $scope.question.name);
                         if(inSet !== null){
                             $scope.inSet = true;
                         }
@@ -41,6 +41,12 @@ angular.module('placemapApp')
                     QuestionSetService.addQuestion(question);
                     $scope.inSet = true;
                 }
+
+                $scope.removeQuestionFromSet = function(question){
+                    QuestionSetService.removeQuestion(question);
+                    $scope.inSet = false;
+                }
+
 
             }//end controller
         };

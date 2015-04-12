@@ -1,11 +1,24 @@
-<md-card  layout="row" layout-align="start center" style="padding-left:10px;">
+<md-card  layout="row" layout-align="start center" style="padding:10px 10px 10px 10px">
     <div style="width:30px; cursor:pointer;">
         <md-icon ng-show="selectedSet !== null && !inSet" ng-click="addQuestionToSet(question)" style="color:green" md-svg-src="/src/assets/icons/ic_add_circle_24px.svg"></md-icon>
+        <md-icon ng-show="inSet" ng-click="removeQuestionFromSet(question)" style="color:red" md-svg-src="/src/assets/icons/ic_remove_circle_24px.svg"></md-icon>
     </div>
-    <div flex>
-        <h3 ng-click="setEditQuestion(question)" >{{question.name}}</h3>
-        <!--<h4>{{ item.what }}</h4>-->
-        <!--<p>{{ item.notes }}</p>-->
+    <div flex layout="column">
+        <div layout="row" layout-align="space-between start">
+            <div>
+                <span ng-click="setEditQuestion(question)" class="question_name" >{{question.name}}</span>
+            </div>
+
+            <div>
+                <span class="question_type">{{question.type}}</span>
+            </div>
+        </div>
+        <div layout="row">
+            <div>
+                <span>{{question.text}}</span>
+            </div>
+        </div>
+
     </div>
 </md-card>
 

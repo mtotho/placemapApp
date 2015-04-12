@@ -44,14 +44,28 @@
             <div>Viewing <strong>{{selectedSet.name}}</strong> questions</div>
         </div>
 
-        <md-card style="padding:5px 10px 5px 10px" layout="row" layout-align="space-between center" ng-repeat="q in selectedSet.questions">
-            <div>
-                {{q.name}}
+        <md-card style="padding:5px 10px 5px 10px" layout="row" layout-align="space-between center" ng-repeat="question in selectedSet.questions">
+            <div flex layout="column">
+                <div layout="row" layout-align="space-between start">
+                    <div>
+                        <span ng-click="setEditQuestion(question)" class="question_name" >{{question.name}}</span>
+                    </div>
+
+                    <div>
+                        <span class="question_type">{{question.type}}</span>
+                    </div>
+                </div>
+                <div layout="row" layout-align="space-between start">
+                    <div>
+                        <span>{{question.text}}</span>
+                    </div>
+                    <div>
+                        <a style="cursor:pointer; color:red" ng-click="removeQuestion($index)">remove</a>
+                    </div>
+                </div>
+
             </div>
 
-            <div>
-                <a style="cursor:pointer; color:red" ng-click="removeQuestion($index)">remove</a>
-            </div>
 
 
         </md-card>

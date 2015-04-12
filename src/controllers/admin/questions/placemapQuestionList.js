@@ -58,7 +58,7 @@ angular.module('placemapApp')
 
                 $scope.selectedSet = null;
 
-                $scope.$on('setSelected',function(event,set){
+                $scope.$on('qsUpdated',function(event,set){
                     $scope.selectedSet = set;
 
                 });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('placemapApp').factory('QuestionSetService', function($rootScope, $resource) {
+angular.module('placemapApp').factory('QuestionSetService', function($rootScope,$filter, $resource) {
 
     this.questionset = null;
 
@@ -29,6 +29,17 @@ angular.module('placemapApp').factory('QuestionSetService', function($rootScope,
         }
     }
 
+    var removeQuestion = function(question){
+        var qindex = $filter('getIndexByProp')(this.questionset.questions, '_id', question._id);
+
+        if(qindex !== null){
+
+            this.questionset.questions.splice(qindex,1);
+            commit(this.questionset);
+        }
+
+    }
+
     var commit = function(qs){
         if(qs){
             console.log(qs);
@@ -47,6 +58,7 @@ angular.module('placemapApp').factory('QuestionSetService', function($rootScope,
         addQuestion:addQuestion,
         getQuestions:getQuestions,
         setSelected:setSelected,
+        removeQuestion:removeQuestion,
         commit:commit
 
     };
