@@ -24,7 +24,11 @@ angular.module('placemapApp')
                 }
 
 
-
+                $scope.$on('placeReady',function(junk, place){
+                    vm.place = place;
+                    console.log(vm.place);
+                });
+                console.log(vm.place);
 
             },//end controller,
             controllerAs: 'vm'

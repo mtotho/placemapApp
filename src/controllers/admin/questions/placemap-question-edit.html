@@ -27,9 +27,13 @@
             <div style="padding-top:20px" ng-show="question.type==='radio' || question.type==='checkbox'" layout="column" >
 
               <span style="font-style:italic;">Options</span>
-                <div ng-repeat="opt in question.opts">
-                    <span style="font-weight:bold;">{{ opt.text }}</span>
+            <div ng-repeat="opt in question.opts" layout="row" layout-align="center center">
+                <div flex="60" style="font-weight:bold;">{{ opt.text }}</div>
+                <div flex>
+                    <md-icon ng-click="removeOptFromQuestion(opt)" style="color:red; cursor:pointer" md-svg-src="/src/assets/icons/ic_remove_circle_24px.svg"></md-icon>
                 </div>
+
+            </div>
 
                 <md-input-container flex style="margin-top:30px">
                     <label>New Option</label>

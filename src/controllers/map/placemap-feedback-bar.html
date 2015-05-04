@@ -1,8 +1,8 @@
 
-<div layout="column">
+<div layout="column" layout-padding>
 
-    <div layout="row">
-        <md-button
+    <div layout="row" style="margin-bottom:20px;">
+        <md-button aria-label="back button"
                 class="md-icon-button launch"
                 ng-click="vm.goBack()">
 
@@ -12,6 +12,49 @@
         <p  style="cursor:pointer" ng-click="vm.goBack()">Choose another location</p>
 
     </div>
+
+    <div style="font-weight:bold; margin-bottom:10px;">Please complete the following</div>
+
+    <md-content layout="column">
+
+        <div class="question" layout="column" ng-repeat="question in vm.place.question_set.questions">
+
+            <div class="question-title">
+                {{question.text}}
+            </div>
+
+            <div ng-show="question.type==='checkbox'">
+                <md-checkbox ng-repeat="opt in question.opts" ng-value="opt.text" ng-model="kek1"  aria-label="Checkbox 1">
+                    {{ opt.text }}
+                </md-checkbox>
+
+            </div>
+            <div ng-show="question.type==='shortanswer'">
+                <md-input-container >
+                    <label>Text</label>
+                    <textarea md-maxlength="500" maxlength="500" columns="1"  style=""  name="description" ng-model="kek"></textarea>
+                    <!--<div ng-messages="projectForm.description.$error">-->
+                    <!--<div ng-message="required">This is required.</div>-->
+                    <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
+                    <!--</div>-->
+                </md-input-container>
+            </div>
+
+            <div ng-show="question.type==='radio'">
+                <md-radio-group  layout-align="start center" layout="row" ng-model="rder" class="md-primary">
+                    <md-radio-button style=" margin-right:12px;" ng-repeat="opt in question.opts"
+                                     ng-value="opt.text"
+                    ">
+                    {{ opt.text }}
+                    </md-radio-button>
+                </md-radio-group>
+
+            </div>
+
+
+        </div>
+
+    </md-content>
 
 
 </div>

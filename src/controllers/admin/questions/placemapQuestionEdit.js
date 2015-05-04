@@ -30,7 +30,23 @@ angular.module('placemapApp')
 
                     $scope.isNew = false;
                 }
-                console.log($scope.question);
+
+                $scope.removeOptFromQuestion = function(opt){
+                    console.log( $scope.question);
+                    var index = -1;
+
+                    for(var i = 0; i < $scope.question.opts.length; i++){
+                        if($scope.question.opts[i]._id===opt._id){
+                            index = i;
+                            break;
+                        }
+                    };
+
+                    if(index>0){
+                        $scope.question.opts.splice(index, 1);
+                    }
+                }
+
                 $scope.newOption = "";
 
                 $scope.addOption = function(){
