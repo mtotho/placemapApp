@@ -1,102 +1,100 @@
 'use strict';
 
 angular.module('placemapApp')
-    .controller('MapCtrl', function ($scope,$stateParams,$resource,Resources,MapService, uiGmapGoogleMapApi) {
+    .controller('MapCtrl', function ($scope,$stateParams) {
         var vm=this;
 
-        var Place = $resource('/api/places');
+        //var Place = $resource('/api/places');
         vm.placeName = $stateParams.name;
-        vm.placeId = $stateParams.placeId;
+        vm.placeid = $stateParams.placeId;
 
-        MapService.getPlace(vm.placeId,function(place){
-            console.log(place);
 
-            //
-            //$scope.map.center = place.center;
-            //$scope.map.zoom = place.zoom;
-            //
-            //$scope.pointer.coords = {
-            //    latitude:place.center.latitude,
-            //    longitude:place.center.longitude
-            //};
-        });
-
-        //Resources.places.get({id:vm.placeId},function(place){
         //
+        //MapService.getPlace(vm.placeId,function(place){
+        //    console.log(place);
         //
+        //$scope.map = MapService.map;
+        //$scope.pointer = MapService.pointer;
+
+
+        ////Size map height after it loadss
+        //$scope.$on('$viewContentLoaded', function () {
+        //  map_resize();
         //});
-        //
-
-        $scope.map = MapService.map;
-        $scope.pointer = MapService.pointer;
-        ////Define the map objects
-        //$scope.map = {
-        //    center:
-        //    {
-        //        latitude: 40.748817,
-        //        longitude: -73.985428
-        //    },
-        //    zoom: 13,
-        //    control:{},
-        //    markersControl:{}
-        //
-        //};
-        //
-        //$scope.pointer = {
-        //    id:"pointer",
-        //    coords:{
-        //        latitude:40.733973,
-        //        longitude:-73.986695
-        //    },
-        //    options:{
-        //        draggable:true
-        //    },
-        //    events:{},
-        //    control:{}
-        //}
-
-        $scope.responseMarkers=[
-
-        ]
 
 
+    }).directive('placemapContainer', function () {
+        return {
+            templateUrl: 'src/controllers/map/placemap-container.html?v=1',
+            restrict: 'EA',
+            scope:{
+                  "placeid":"="
+            },
+            //require:"^placemapQuestionList",
+            link: function (scope, element, attrs) {
+
+            },
+            controller: function($scope, MapService,$rootScope, uiGmapGoogleMapApi){
+                var vm = this;
+
+                //vm.mapready = false;
+
+               // $rootScope.$on('mapready',function(){
+
+               // });
+                vm.showSideBar =false;
+                $scope.map = MapService.map;
+                $scope.pointer = MapService.pointer;
+
+                angular.map_resize();
+
+                MapService.getPlace($scope.placeid,function(place) {
+                    console.log(place);
+
+                    $scope.map = MapService.map;
+                    $scope.pointer = MapService.pointer;
 
 
-        //Size map height after it loadss
-        $scope.$on('$viewContentLoaded', function () {
-          map_resize();
-        });
-
-        $scope.panToStudio = function(studioname){
-            var result = $.grep($scope.spinLocations, function(e){ return e.options.title== studioname; });
+                      //  vm.mapready = true;
 
 
-            var studio=result[0];
+                    console.log($scope.map);
 
-            $scope.map.center={
-                latitude: studio.latitude,
-                longitude: studio.longitude
-            }
-            $scope.map.zoom=16;
-        }
+                    //Size map height after it loadss
+
+                });
 
 
-    });
+                vm.showRightBar = function (bool){
+                    vm.showSideBar = bool;
+                }
 
-function map_resize(offset){
+            },//end controller,
+            controllerAs: 'vm'
+        };
+});
+
+
+
+
+
+
+angular.map_resize = function(offset){
     var headerheight=$("#header").outerHeight();
+    var mapbarheight=$("map-action-bar md-toolbar").outerHeight();
     var windowheight=$(window).outerHeight();
 
-    var targetheight = windowheight - (headerheight);
+    var targetheight = windowheight - (headerheight + mapbarheight);
 
     if(offset){
        targetheight = targetheight-offset;
     }
-    $("#map_canvas .angular-google-map-container").css('height',targetheight+'px');
+
+    $("#placemap .angular-google-map-container").css('height',targetheight+'px');
     $(".full-height").css('height',targetheight+'px');
-    console.log(targetheight);
+
 }
 
 $(window).resize(function(){
-    ///map_resize();
+    angular.map_resize
 });

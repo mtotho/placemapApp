@@ -1,68 +1,28 @@
+<style type="text/css">
+    .animate-show-hide {
+        padding:10px;
+        border:1px solid black;
+        background:white;
+    }
+
+    .animate-show-hide.ng-hide-add, .animate-show-hide.ng-hide-remove {
+        -webkit-transition:all linear 0.5s;
+        -moz-transition:all linear 0.5s;
+        -o-transition:all linear 0.5s;
+        transition:all linear 0.5s;
+        display:block!important;
+    }
+
+    .animate-show-hide.ng-hide-add.ng-hide-add-active,
+    .animate-show-hide.ng-hide-remove {
+        opacity:0;
+    }
+
+    .animate-show-hide.ng-hide-add,
+    .animate-show-hide.ng-hide-remove.ng-hide-remove-active {
+        opacity:1;
+    }
+</style>
 
 
-<map-action-bar></map-action-bar>
-
-
-<section layout="row">
-
-
-    <div flex>
-        <ui-gmap-google-map center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='map.control'>
-
-
-            <!--  <ui-gmap-markers
-                 models='{expression}'
-                 idKey='{expression}'
-                 doRebuildAll="{string or object}"
-                 doCluster="{string or object}"
-                 clusterOptions='{expression}'
-                 fit="{string or object}"
-                 labelContent='{expression}'
-                 coords="'{string}'"
-                 icon="'{string}'"
-                 options="'{string}'"
-                 labelContent="'{string}'"
-                 labelAnchor="'{string}'"
-                 labelClass="'{string}'"
-                 click="'{string or expression to a function}'"
-                 events="{expression}"
-                 control='{expression}'
-                >
-            </ui-gmap-markers>-->
-            <ui-gmap-marker
-                    idKey="pointer.id"
-                    coords="pointer.coords"
-
-                    options="pointer.options"
-                    events="pointer.events"
-
-                    ></ui-gmap-marker>
-
-            <!--<ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'"></ui-gmap-markers>-->
-
-        </ui-gmap-google-map>
-    </div>
-
-
-        <!--<md-content class="full-height" style="width:100%">-->
-
-            <!--<md-list>-->
-                <!--<md-item ng-repeat="studio in studios">-->
-                    <!--<md-item-content>-->
-                       <!--&lt;!&ndash; <div class="md-tile-left">-->
-                            <!--<img ng-src="{{item.face}}" class="face" alt="{{item.who}}">-->
-                        <!--</div>&ndash;&gt;-->
-                        <!--<div class="md-tile-content studioNav" ng-click="panToStudio(studio.name)">-->
-                            <!--<h3>{{studio.name}}</h3>-->
-
-                        <!--</div>-->
-                    <!--</md-item-content>-->
-                <!--</md-item>-->
-            <!--</md-list>-->
-        <!--</md-content>-->
-
-
-
-</section>
-
-
+<placemap-container  placeid="vm.placeid"></placemap-container>

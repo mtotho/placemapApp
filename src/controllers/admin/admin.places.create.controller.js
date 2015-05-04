@@ -85,6 +85,21 @@ angular.module('placemapApp')
     });
 
 
+function map_resize(offset){
+    var headerheight=$("#header").outerHeight();
+    var mapbarheight=88;
+    var windowheight=$(window).outerHeight();
+
+    var targetheight = windowheight - (headerheight + mapbarheight);
+
+    if(offset){
+        targetheight = targetheight-offset;
+    }
+
+    $("#map_canvas .angular-google-map-container").css('height',targetheight+'px');
+    $(".full-height").css('height',targetheight+'px');
+
+}
 $(window).resize(function(){
     map_resize(40);
 });

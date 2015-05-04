@@ -36,7 +36,19 @@ angular.module('placemapApp').factory('MapService', function($rootScope, uiGmapG
                 $rootScope.$broadcast('markerDrag', marker);
             }
         },
-        control:{}
+        control:{},
+        toggleAnimation: function(bool){
+            uiGmapGoogleMapApi.then(function(maps) {
+
+                if(!bool){
+                    pointer.options.animation = null;
+                }else{
+                    pointer.options.animation=maps.Animation.BOUNCE;
+                }
+
+
+            });
+        }
 
     }
 
@@ -47,11 +59,7 @@ angular.module('placemapApp').factory('MapService', function($rootScope, uiGmapG
                 latitude:map.center.latitude,
                 longitude:map.center.longitude
             };
-            uiGmapGoogleMapApi.then(function(maps) {
-
-                pointer.options.animation=maps.Animation.BOUNCE;
-
-            });
+          pointer.toggleAnimation(true);
 
         }else{
 
@@ -60,9 +68,12 @@ angular.module('placemapApp').factory('MapService', function($rootScope, uiGmapG
 
     }
 
-    var getPlace = function(placeid, callback){
-        Resources.places.get({id:placeid},function(place){
+    var place = {};
 
+    var getPlace = function(placeid, callback){
+        Resources.places.get({id:placeid},function(placeresource){
+
+            place = placeresource;
             map.center = place.center;
             map.zoom = place.zoom;
 
@@ -71,6 +82,7 @@ angular.module('placemapApp').factory('MapService', function($rootScope, uiGmapG
                 longitude:place.center.longitude
             };
 
+            $rootScope.$broadcast('placeReady', place);
            callback(place);
         });
     }
@@ -79,6 +91,7 @@ angular.module('placemapApp').factory('MapService', function($rootScope, uiGmapG
 
     return {
         map:map,
+        place:place,
         pointer:pointer,
         getPlace:getPlace,
         showPointer:showPointer

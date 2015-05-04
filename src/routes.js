@@ -11,7 +11,7 @@
                 }).state('Place', {
                     url: '/places/:placeId/:name',
                     templateUrl: 'src/controllers/map/map.html',
-                    controller: 'MapCtrl'
+                    controller: 'MapCtrl as vm'
                 }).state('Login',{
                     url:'/login',
                     templateUrl: 'src/controllers/login/login.html',
