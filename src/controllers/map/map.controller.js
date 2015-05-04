@@ -1,54 +1,59 @@
 'use strict';
 
 angular.module('placemapApp')
-    .controller('MapCtrl', function ($scope,$stateParams,$resource,Resources, uiGmapGoogleMapApi) {
+    .controller('MapCtrl', function ($scope,$stateParams,$resource,Resources,MapService, uiGmapGoogleMapApi) {
         var vm=this;
 
         var Place = $resource('/api/places');
         vm.placeName = $stateParams.name;
         vm.placeId = $stateParams.placeId;
 
-        Resources.places.get({id:vm.placeId},function(place){
-           console.log(place);
+        MapService.getPlace(vm.placeId,function(place){
+            console.log(place);
 
-
-            $scope.map.center = place.center;
-            $scope.map.zoom = place.zoom;
-
-            $scope.pointer.coords = {
-                latitude:place.center.latitude,
-                longitude:place.center.longitude
-            };
-
+            //
+            //$scope.map.center = place.center;
+            //$scope.map.zoom = place.zoom;
+            //
+            //$scope.pointer.coords = {
+            //    latitude:place.center.latitude,
+            //    longitude:place.center.longitude
+            //};
         });
 
+        //Resources.places.get({id:vm.placeId},function(place){
+        //
+        //
+        //});
+        //
 
-
-        //Define the map objects
-        $scope.map = {
-            center:
-            {
-                latitude: 40.748817,
-                longitude: -73.985428
-            },
-            zoom: 13,
-            control:{},
-            markersControl:{}
-
-        };
-
-        $scope.pointer = {
-            id:"pointer",
-            coords:{
-                latitude:40.733973,
-                longitude:-73.986695
-            },
-            options:{
-                draggable:true
-            },
-            events:{},
-            control:{}
-        }
+        $scope.map = MapService.map;
+        $scope.pointer = MapService.pointer;
+        ////Define the map objects
+        //$scope.map = {
+        //    center:
+        //    {
+        //        latitude: 40.748817,
+        //        longitude: -73.985428
+        //    },
+        //    zoom: 13,
+        //    control:{},
+        //    markersControl:{}
+        //
+        //};
+        //
+        //$scope.pointer = {
+        //    id:"pointer",
+        //    coords:{
+        //        latitude:40.733973,
+        //        longitude:-73.986695
+        //    },
+        //    options:{
+        //        draggable:true
+        //    },
+        //    events:{},
+        //    control:{}
+        //}
 
         $scope.responseMarkers=[
 

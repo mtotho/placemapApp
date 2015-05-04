@@ -2,11 +2,11 @@ angular.module('placemapApp')
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.definePalette('placemapPrimary', {
             '50': 'FFFDE7',
-            '100': '689F38',
+            '100': 'C8E6C9',
             '200': 'FFF59D',
             '300': 'FFF176',
-            '400': '689F38',//primary yellow
-            '500': 'FFEB3B',
+            '400': '689F38',//primary green
+            '500': '4CAF50',
             '600': 'FDD835',
             '700': '689F38',
             '800': 'F8A825',
@@ -52,7 +52,7 @@ angular.module('placemapApp')
             .primaryPalette('placemapPrimary',{
                 'default': '400', // by default use shade 400 from the pink palette for primary intentions
                 'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
-                'hue-2': '400', // use shade 600 for the <code>md-hue-2</code> class
+                'hue-2': '500', // use shade 600 for the <code>md-hue-2</code> class
                 'hue-3': '700' // use shade A100 for the <code>md-hue-3</code> class
             }).accentPalette('placemapAccent',{
                 'default': '500', // by default use shade 400 from the pink palette for primary intentions

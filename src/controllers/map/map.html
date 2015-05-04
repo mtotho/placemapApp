@@ -1,6 +1,12 @@
+
+
+<map-action-bar></map-action-bar>
+
+
 <section layout="row">
 
-    <div flex="80">
+
+    <div flex>
         <ui-gmap-google-map center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='map.control'>
 
 
@@ -37,30 +43,26 @@
         </ui-gmap-google-map>
     </div>
 
-    <p>{{ badbind }}</p>
-    <p>{{ goodbind }}</p>
 
-        <md-content class="full-height" style="width:100%">
+        <!--<md-content class="full-height" style="width:100%">-->
 
-            <md-list>
-                <md-item ng-repeat="studio in studios">
-                    <md-item-content>
-                       <!-- <div class="md-tile-left">
-                            <img ng-src="{{item.face}}" class="face" alt="{{item.who}}">
-                        </div>-->
-                        <div class="md-tile-content studioNav" ng-click="panToStudio(studio.name)">
-                            <h3>{{studio.name}}</h3>
+            <!--<md-list>-->
+                <!--<md-item ng-repeat="studio in studios">-->
+                    <!--<md-item-content>-->
+                       <!--&lt;!&ndash; <div class="md-tile-left">-->
+                            <!--<img ng-src="{{item.face}}" class="face" alt="{{item.who}}">-->
+                        <!--</div>&ndash;&gt;-->
+                        <!--<div class="md-tile-content studioNav" ng-click="panToStudio(studio.name)">-->
+                            <!--<h3>{{studio.name}}</h3>-->
 
-                        </div>
-                    </md-item-content>
-                </md-item>
-            </md-list>
-        </md-content>
+                        <!--</div>-->
+                    <!--</md-item-content>-->
+                <!--</md-item>-->
+            <!--</md-list>-->
+        <!--</md-content>-->
 
 
 
 </section>
 
 
-
-sdsd

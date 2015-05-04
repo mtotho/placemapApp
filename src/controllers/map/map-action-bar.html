@@ -1,0 +1,39 @@
+<style>
+    map-action-bar md-toolbar{
+        min-height:80px !important;
+    }
+    .map-fab{
+        position:absolute;
+        top:120px;
+        left:420px;
+    }
+</style>
+
+<md-toolbar class="md-accent md-hue-2" layout="row" layout-align="start center" layout-padding>
+
+    <div flex="20" ng-show="vm.steps.starting">
+        <md-button ng-click="vm.getStarted()" >Get Started</md-button>
+    </div>
+
+    <div flex ng-show="vm.steps.placing">
+
+        Now let's move the marker to a place of interest
+        <!--<md-button ng-click="vm.getStarted()" >Get Started</md-button>-->
+    </div>
+
+    <div flex ng-show="vm.steps.ranking">
+
+        Okay great. Now it is time to provide feedback for this location
+        <!--<md-button ng-click="vm.getStarted()" >Get Started</md-button>-->
+    </div>
+
+
+
+</md-toolbar>
+
+<md-button  class="md-fab map-fab md-primary md-hue-2" ng-disabled="!vm.markerDragged"
+            ng-click="vm.confirmPlacement()"
+            ng-show="vm.steps.placing" aria-label="Okay Fab">
+    <!--<md-icon md-svg-src="img/icons/cake.svg"></md-icon>-->
+    Ok
+</md-button>
