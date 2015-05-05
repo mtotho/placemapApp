@@ -46,19 +46,16 @@ angular.module('placemapApp')
                 $scope.map = MapService.map;
                 $scope.pointer = MapService.pointer;
 
+                vm.place = null;;
                 angular.map_resize();
 
                 MapService.getPlace($scope.placeid,function(place) {
                     console.log(place);
 
+                    vm.place = place;
                     $scope.map = MapService.map;
                     $scope.pointer = MapService.pointer;
 
-
-                      //  vm.mapready = true;
-
-
-                    console.log($scope.map);
 
                     //Size map height after it loadss
 
@@ -96,5 +93,5 @@ angular.map_resize = function(offset){
 }
 
 $(window).resize(function(){
-    angular.map_resize
+    angular.map_resize()
 });

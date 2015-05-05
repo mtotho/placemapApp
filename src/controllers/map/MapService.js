@@ -82,7 +82,7 @@ angular.module('placemapApp').factory('MapService', function($rootScope, uiGmapG
                 longitude:place.center.longitude
             };
 
-            $rootScope.$broadcast('placeReady', place);
+
            callback(place);
         });
     }
