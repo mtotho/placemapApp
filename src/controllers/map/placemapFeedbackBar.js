@@ -15,7 +15,7 @@ angular.module('placemapApp')
                 }
 
             },
-            controller: function($scope, MapService,$rootScope){
+            controller: function($scope, MapService,Resources, $rootScope){
 
                 var vm = this;
 
@@ -23,6 +23,7 @@ angular.module('placemapApp')
                 vm.questionIndex = 0;
                 vm.questionCount = 0;
                 vm.questionsComplete = false;
+                vm.responses = [];
 
                 vm.goBack = function(){
                     $rootScope.$broadcast('selectLocation');
@@ -33,16 +34,17 @@ angular.module('placemapApp')
                     if(!angular.isUndefinedOrNull($scope.place)){
                         vm.place = $scope.place;
                         console.log(vm.place);
-
+                        //vm.newFeedback.place = vm.place._id;
                         vm.questionCount = vm.place.question_set.questions.length;
 
                         if(vm.questionCount > 0){
+                           // vm.responses = new ResponseObject(vm.place.question_set.questions);
+                           // console.log(vm.responses);
                             vm.currentQuestion = vm.place.question_set.questions[0];
 
                         }
                     }
                 });
-
 
                 vm.nextQuestion = function(){
                     if(vm.questionIndex < vm.questionCount){
@@ -61,12 +63,26 @@ angular.module('placemapApp')
 
                 vm.submitFeedback = function(){
 
-                    vm.questionIndex = 0;
+                    var feedback = {
+                        place:vm.place._id,
+                        responses: []
+                    };
 
-                    vm.currentQuestion = vm.place.question_set.questions[vm.questionIndex];
-                    vm.questionsComplete = true;
 
+                    for(var r in vm.responses){
+                        console.log(r);
+                        feedback.responses.push(vm.responses[r]);
+                    }
+                    var Feedback = new Resources.feedback(feedback);
 
+                    Feedback.$save(function(result){
+                       console.log(result);
+
+                        vm.questionIndex = 0;
+                        vm.responses = [];
+                        vm.currentQuestion = vm.place.question_set.questions[vm.questionIndex];
+                        vm.questionsComplete = true;
+                    });
 
                 };
 

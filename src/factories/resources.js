@@ -13,7 +13,8 @@ angular.module('placemapApp').factory('Resources', function($resource) {
                 create: {
                     method: 'POST'
                 }
-            })
+            }),
+        feedback: $resource('/api/feedback/')
 
     };
 });

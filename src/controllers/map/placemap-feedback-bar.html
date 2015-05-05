@@ -30,7 +30,7 @@
                 </div>
 
                 <div ng-show="vm.currentQuestion.type==='checkbox'">
-                    <md-checkbox ng-repeat="opt in vm.currentQuestion.opts" ng-value="opt.text" ng-model="kek1"  aria-label="Checkbox 1">
+                    <md-checkbox ng-repeat="opt in vm.currentQuestion.opts" ng-value="opt.text" ng-model="vm.responses[vm.currentQuestion._id].response_opts[opt.text]"  aria-label="Checkbox 1">
                         {{ opt.text }}
                     </md-checkbox>
 
@@ -38,7 +38,7 @@
                 <div ng-show="vm.currentQuestion.type==='shortanswer'">
                     <md-input-container >
                         <label>Text</label>
-                        <textarea md-maxlength="500" maxlength="500" columns="1"  style=""  name="description" ng-model="kek"></textarea>
+                        <textarea md-maxlength="500" maxlength="500" columns="1"  style=""  name="description" ng-model="vm.responses[vm.currentQuestion._id].response_text"></textarea>
                         <!--<div ng-messages="projectForm.description.$error">-->
                         <!--<div ng-message="required">This is required.</div>-->
                         <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
@@ -47,7 +47,7 @@
                 </div>
 
                 <div ng-show="vm.currentQuestion.type==='radio'">
-                    <md-radio-group  layout-align="start center"  ng-model="rder" class="md-primary">
+                    <md-radio-group  layout-align="start center"  ng-model="vm.responses[vm.currentQuestion._id].response_text" class="md-primary">
                         <md-radio-button style=" margin-right:12px;" ng-repeat="opt in vm.currentQuestion.opts"
                                          ng-value="opt.text"
                         ">
