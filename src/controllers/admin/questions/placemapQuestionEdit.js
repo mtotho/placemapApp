@@ -64,6 +64,9 @@ angular.module('placemapApp')
                 $scope.saveQuestion = function(form){
 
                     if(form.$valid) {
+                        if(!$scope.question.hasOwnProperty("is_required")){
+                            $scope.question.is_required = false;
+                        }
                         if ($scope.isNew) {
 
                             var q = new Question($scope.question);
@@ -79,7 +82,7 @@ angular.module('placemapApp')
                         } else {
 
                             Question.update({id: $scope.question._id}, $scope.question, function (result) {
-                                console.log(result);
+
                                 $scope.editComplete();
                             });
 

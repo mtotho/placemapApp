@@ -15,7 +15,7 @@ angular.module('placemapApp')
                 }
 
             },
-            controller: function($scope, MapService,Resources, $rootScope){
+            controller: function($scope, MapService,Resources, $mdDialog, $rootScope){
 
                 var vm = this;
 
@@ -38,7 +38,7 @@ angular.module('placemapApp')
                         vm.questionCount = vm.place.question_set.questions.length;
 
                         if(vm.questionCount > 0){
-                           // vm.responses = new ResponseObject(vm.place.question_set.questions);
+                            vm.responses = new ResponseObject(vm.place.question_set.questions);
                            // console.log(vm.responses);
                             vm.currentQuestion = vm.place.question_set.questions[0];
 
@@ -46,10 +46,38 @@ angular.module('placemapApp')
                     }
                 });
 
-                vm.nextQuestion = function(){
+                function ResponseObject(questions){
+                    var response = [];
+
+                    for(var i=0; i<questions.length; i++){
+                        response[questions[i]._id] = {
+                            question:questions[i]._id,
+                            response_text:""
+                        }
+                    }
+
+                    return response;
+                }
+
+                vm.nextQuestion = function(ev){
                     if(vm.questionIndex < vm.questionCount){
-                        vm.questionIndex ++;
-                        vm.currentQuestion = vm.place.question_set.questions[vm.questionIndex];
+
+
+                        if((vm.currentQuestion.is_required && vm.responses[vm.currentQuestion._id].response_text!=="") || !vm.currentQuestion.is_required){
+                             vm.questionIndex ++;
+                             vm.currentQuestion = vm.place.question_set.questions[vm.questionIndex];
+                         }else{
+                             $mdDialog.show(
+                                 $mdDialog.alert()
+                                     .parent(angular.element(document.body))
+                                     .title('Oops')
+                                     .content('Please complete this question before moving on')
+                                     .ariaLabel('Alert Dialog')
+                                     .ok('Got it!')
+                                     .targetEvent(ev)
+                             );
+                         }
+
                     }
                 };
 
@@ -61,28 +89,39 @@ angular.module('placemapApp')
                 };
 
 
-                vm.submitFeedback = function(){
+                vm.submitFeedback = function(ev){
 
-                    var feedback = {
-                        place:vm.place._id,
-                        responses: []
-                    };
+                    if((vm.currentQuestion.is_required && vm.responses[vm.currentQuestion._id].response_text!=="") || !vm.currentQuestion.is_required){
+                        var feedback = {
+                            place:vm.place._id,
+                            responses: []
+                        };
 
+                        for(var r in vm.responses){
+                            console.log(r);
+                            feedback.responses.push(vm.responses[r]);
+                        }
+                        var Feedback = new Resources.feedback(feedback);
 
-                    for(var r in vm.responses){
-                        console.log(r);
-                        feedback.responses.push(vm.responses[r]);
+                        Feedback.$save(function(result){
+                            console.log(result);
+
+                            vm.questionIndex = 0;
+                            vm.responses = [];
+                            vm.currentQuestion = vm.place.question_set.questions[vm.questionIndex];
+                            vm.questionsComplete = true;
+                        });
+                    }else{
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.body))
+                                .title('Oops')
+                                .content('Please complete this question before moving on')
+                                .ariaLabel('Alert Dialog')
+                                .ok('Got it!')
+                                .targetEvent(ev)
+                        );
                     }
-                    var Feedback = new Resources.feedback(feedback);
-
-                    Feedback.$save(function(result){
-                       console.log(result);
-
-                        vm.questionIndex = 0;
-                        vm.responses = [];
-                        vm.currentQuestion = vm.place.question_set.questions[vm.questionIndex];
-                        vm.questionsComplete = true;
-                    });
 
                 };
 

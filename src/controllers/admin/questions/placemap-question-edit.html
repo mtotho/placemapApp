@@ -14,6 +14,10 @@
                 <label>Question Text</label>
                 <input ng-model="question.text" required>
             </md-input-container>
+
+            <md-switch ng-model="question.is_required" aria-label="Switch 1">
+                Required: {{ question.is_required}}
+            </md-switch>
         </div>
 
         <div layout="column">
