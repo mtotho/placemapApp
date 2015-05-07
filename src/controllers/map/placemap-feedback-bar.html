@@ -1,4 +1,14 @@
+<style>
+    #feedback-question-content {
+        min-height:200px;
+    }
+    @media screen and (max-width: 600px) {
+        #feedback-question-content {
+            min-height:0px;
+        }
+    }
 
+</style>
 <div layout="column"  layout-padding>
 
     <div layout="column" ng-hide="vm.questionsComplete">
@@ -20,64 +30,67 @@
 
 
     <div layout="column" layout-fill layout-align="space-between start">
-        <div id="feedback-question-content" layout-fill style="padding-top:30px" layout="column" ng-hide="vm.questionsComplete">
+        <div id="feedback-question-content" layout-fill style="padding-top:30px;" layout="column" ng-hide="vm.questionsComplete">
 
-            <div layout-padding class="question"  layout="column" style="">
+                <div layout-padding class="question"  layout="column" style="">
 
 
-                <div layout="row" >
-                    <div class="question-title" >
-                        {{vm.currentQuestion.text}}
+                        <div layout="row" >
+                            <div class="question-title" >
+                                {{vm.currentQuestion.text}}
+                            </div>
+
+                            <div hide-sm style="margin-left:10px; font-size:12px; font-style:italic; " ng-show="vm.currentQuestion.is_required">
+                                required
+                            </div>
+                            <div show-sm hide-gt-sm style="margin-left:10px; font-size:12px; color:red; font-style:italic; " ng-show="vm.currentQuestion.is_required">
+                                *
+                            </div>
+                        </div>
+
+
+
+
+                        <div ng-show="vm.currentQuestion.type==='checkbox'">
+                            <md-checkbox ng-repeat="opt in vm.currentQuestion.opts" ng-value="opt.text" ng-model="vm.responses[vm.currentQuestion._id].response_opts[opt.text]"  aria-label="Checkbox 1">
+                                {{ opt.text }}
+                            </md-checkbox>
+
+                        </div>
+                        <div ng-show="vm.currentQuestion.type==='shortanswer'">
+                            <md-input-container >
+                                <label>Text</label>
+                                <textarea md-maxlength="500" maxlength="500" columns="1"  style=""  name="description" ng-model="vm.responses[vm.currentQuestion._id].response_text"></textarea>
+                                <!--<div ng-messages="projectForm.description.$error">-->
+                                <!--<div ng-message="required">This is required.</div>-->
+                                <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
+                                <!--</div>-->
+                            </md-input-container>
+                        </div>
+
+                        <div ng-show="vm.currentQuestion.type==='radio'">
+                            <md-radio-group  layout-align="start center"  ng-model="vm.responses[vm.currentQuestion._id].response_text" class="md-primary">
+                                <md-radio-button style=" margin-right:12px;" ng-repeat="opt in vm.currentQuestion.opts"
+                                                 ng-value="opt.text"
+                                ">
+                                {{ opt.text }}
+                                </md-radio-button>
+                            </md-radio-group>
+
+                        </div>
+
+
                     </div>
-
-                    <div style="margin-left:10px; font-size:12px; font-style:italic; " ng-show="vm.currentQuestion.is_required">
-                        required
-                    </div>
-                </div>
-
-
-
-
-                <div ng-show="vm.currentQuestion.type==='checkbox'">
-                    <md-checkbox ng-repeat="opt in vm.currentQuestion.opts" ng-value="opt.text" ng-model="vm.responses[vm.currentQuestion._id].response_opts[opt.text]"  aria-label="Checkbox 1">
-                        {{ opt.text }}
-                    </md-checkbox>
-
-                </div>
-                <div ng-show="vm.currentQuestion.type==='shortanswer'">
-                    <md-input-container >
-                        <label>Text</label>
-                        <textarea md-maxlength="500" maxlength="500" columns="1"  style=""  name="description" ng-model="vm.responses[vm.currentQuestion._id].response_text"></textarea>
-                        <!--<div ng-messages="projectForm.description.$error">-->
-                        <!--<div ng-message="required">This is required.</div>-->
-                        <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
-                        <!--</div>-->
-                    </md-input-container>
-                </div>
-
-                <div ng-show="vm.currentQuestion.type==='radio'">
-                    <md-radio-group  layout-align="start center"  ng-model="vm.responses[vm.currentQuestion._id].response_text" class="md-primary">
-                        <md-radio-button style=" margin-right:12px;" ng-repeat="opt in vm.currentQuestion.opts"
-                                         ng-value="opt.text"
-                        ">
-                        {{ opt.text }}
-                        </md-radio-button>
-                    </md-radio-group>
-
-                </div>
-
-
-            </div>
 
         </div>
 
         <div layout-fill layout="row" layout-align="end center" ng-hide="vm.questionsComplete">
 
             <div>
-                <md-button class="md-accent" ng-show="vm.questionIndex > 0" ng-click="vm.previousQuestion()">Previous Question</md-button>
+                <md-button class="md-accent" ng-show="vm.questionIndex > 0" ng-click="vm.previousQuestion()">Previous</md-button>
             </div>
             <div>
-                <md-button class="md-primary" ng-show="vm.questionIndex < vm.questionCount-1" ng-click="vm.nextQuestion($event)">Next Question</md-button>
+                <md-button class="md-primary" ng-show="vm.questionIndex < vm.questionCount-1" ng-click="vm.nextQuestion($event)">Next</md-button>
                 <md-button class="md-primary md-raised" ng-show="vm.questionIndex === vm.questionCount-1" ng-click="vm.submitFeedback($event)">Submit Feedback</md-button>
             </div>
 

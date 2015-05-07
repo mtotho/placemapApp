@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('placemapApp')
-    .controller('AppCtrl', function ($rootScope,$scope,AuthenticationFactory,UserAuthFactory, User, $state) {
+    .controller('AppCtrl', function ($rootScope,$scope,AuthenticationFactory,UserAuthFactory, $mdSidenav, User, $state) {
         var vm=this;
 
         vm.selectedTab = 0;
@@ -27,9 +27,19 @@ angular.module('placemapApp')
 
         });
 
+        vm.toggleSideNav = function(){
+            $mdSidenav('right').toggle();
+        }
+        vm.goToState = function(state){
+            $state.go(state);
+            $mdSidenav('right').toggle();
+        }
 
 
-        vm.logout = function(){
+        vm.logout = function(toggle){
+            if(toggle){
+                $mdSidenav('right').toggle();
+            }
             UserAuthFactory.logout();
             vm.isLoggedIn = false;
             $state.go('Login');

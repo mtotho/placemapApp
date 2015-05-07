@@ -125,7 +125,7 @@ angular.module('placemapApp')
 
                 };
 
-                size_content();
+               // size_content();
             },//end controller,
             controllerAs: 'vm'
         };
@@ -145,5 +145,5 @@ function size_content(){
 
 }
 $(window).resize(function(){
-    size_content()
+  //  size_content()
 });
